@@ -110,7 +110,6 @@
   panel.className = 'nav__panel';
   panel.innerHTML =
     '<a href="#guide">About Iylia</a>' +
-    '<a href="#route">The day</a>' +
     '<a href="#routes">Programs</a>' +
     '<a href="#terrain">Where we go</a>' +
     '<a href="#basecamp">Plan a retreat</a>';
