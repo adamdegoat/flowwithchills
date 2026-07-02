@@ -503,3 +503,40 @@ body.anim-on .trailhead__mist span{animation-play-state:running}
   .nav__mark path,.nav__mark circle{animation:none!important;stroke-dashoffset:0!important;transform:none!important}
   @view-transition{navigation:none}
 }
+
+/* ======================= VISUAL POLISH ======================= */
+/* cinematic photo band (swap image for Iylia's real shot later) */
+.showcase{position:relative;z-index:2;min-height:52vh;display:flex;align-items:flex-end;overflow:hidden;
+  background:var(--teal-deep) url("https://images.unsplash.com/photo-1441974231531-c6227db76b6e?auto=format&fit=crop&w=1600&q=80") center/cover}
+.showcase::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(14,47,56,.22) 0%,rgba(14,47,56,.32) 45%,rgba(14,47,56,.82));z-index:0}
+.showcase__inner{position:relative;z-index:1;max-width:var(--wrap);margin:0 auto;width:100%;padding:clamp(2.4rem,6vw,4.6rem) var(--gutter)}
+.showcase .mono-tag{margin-bottom:1rem}
+.showcase h2{color:var(--cream);font-size:clamp(2rem,5vw,3.8rem);max-width:18ch}
+
+/* experience line-icons */
+.xp li{position:relative}
+.xp__ico{display:block;width:30px;height:30px;color:var(--apricot-deep);margin-bottom:.75rem}
+.xp__ico svg{width:100%;height:100%;fill:none;stroke:currentColor;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round}
+.xp .xp__no{position:absolute;top:1.4rem;right:1.4rem}
+
+/* faint topographic texture behind sections */
+.topo-deco{position:absolute;color:var(--teal);opacity:.08;pointer-events:none;z-index:0;width:min(42vw,440px);height:auto}
+.topo-deco--tr{top:-46px;right:-46px}
+.topo-deco--bl{bottom:-40px;left:-40px}
+
+/* soft brand grade on photos, so they read as one curated set */
+.terr,.photo--guide,.aboutgrid .photo{position:relative}
+.terr::before,.photo--guide::before,.aboutgrid .photo::before{content:"";position:absolute;inset:0;z-index:0;
+  background:linear-gradient(155deg,rgba(232,168,124,.15),rgba(18,58,67,.22));mix-blend-mode:soft-light;pointer-events:none}
+
+/* softer stat shadows for the calm sections */
+.sign{box-shadow:3px 3px 0 rgba(18,58,67,.15)}
+
+/* editorial pull-quote (About) */
+.pullquote{font-family:var(--display);font-weight:500;font-size:clamp(1.6rem,3.4vw,2.5rem);line-height:1.2;letter-spacing:-.02em;
+  color:var(--teal-deep);margin:1.6em 0;padding-left:1.1rem;border-left:3px solid var(--apricot);max-width:22ch}
+
+@media(max-width:640px){
+  .showcase{min-height:42vh}
+  .topo-deco{display:none}
+}
