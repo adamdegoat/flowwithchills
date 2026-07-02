@@ -108,11 +108,9 @@
   var toggle = document.getElementById('navToggle');
   var panel = document.createElement('div');
   panel.className = 'nav__panel';
-  panel.innerHTML =
-    '<a href="#guide">About Iylia</a>' +
-    '<a href="#routes">Programs</a>' +
-    '<a href="#terrain">Where we go</a>' +
-    '<a href="#basecamp">Plan a retreat</a>';
+  var navLinks = document.querySelector('.nav__links');
+  panel.innerHTML = (navLinks ? navLinks.innerHTML : '') +
+    '<a href="contact.html">Plan a retreat</a>';
   document.body.appendChild(panel);
   function closeMenu() { panel.classList.remove('open'); if (toggle) toggle.classList.remove('is-open'); }
   if (toggle) toggle.addEventListener('click', function () {
