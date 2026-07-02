@@ -255,7 +255,7 @@ a.terr:hover{transform:translate(-3px,-3px);box-shadow:9px 9px 0 var(--teal-deep
 .terr::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(18,58,67,.1) 30%,rgba(11,38,42,.85))}
 .terr__body{position:relative;z-index:1;padding:2rem}
 .terr--sg{background:var(--teal) url("https://images.unsplash.com/photo-1518495973542-4542c06a5843?auto=format&fit=crop&w=1000&q=80") center/cover}
-.terr--jh{background:var(--teal) url("https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?auto=format&fit=crop&w=1000&q=80") center/cover}
+.terr--jh{background:var(--teal) url("../assets/johor.jpg") center/cover}
 .terr__tag{font-family:var(--mono);font-size:.74rem;text-transform:uppercase;letter-spacing:.12em;color:var(--apricot)}
 .terr h3{font-size:2rem;color:var(--cream);margin:.2em 0 .4em}
 .terr p{color:rgba(247,242,232,.86);font-size:1rem;max-width:38ch}
@@ -271,7 +271,7 @@ a.terr:hover{transform:translate(-3px,-3px);box-shadow:9px 9px 0 var(--teal-deep
 .log figcaption span{font-size:.85rem;color:var(--ink-2)}
 
 /* basecamp */
-.basecamp{position:relative;z-index:2;background:var(--ink);color:var(--cream);text-align:center;
+.basecamp{position:relative;z-index:2;background:linear-gradient(160deg,rgba(14,47,56,.86),rgba(14,47,56,.93)),url("../assets/basecamp.jpg") center 40%/cover;color:var(--cream);text-align:center;
   padding:clamp(58px,8vw,108px) var(--gutter);margin:0 var(--gutter) var(--gutter);border-radius:14px;overflow:hidden}
 .basecamp .pin--end{left:50%;transform:translateX(-50%);top:-27px}
 .basecamp__inner{max-width:680px;margin:0 auto;position:relative;z-index:1}
@@ -507,7 +507,7 @@ body.anim-on .trailhead__mist span{animation-play-state:running}
 /* ======================= VISUAL POLISH ======================= */
 /* cinematic photo band (swap image for Iylia's real shot later) */
 .showcase{position:relative;z-index:2;min-height:52vh;display:flex;align-items:flex-end;overflow:hidden;
-  background:var(--teal-deep) url("https://images.unsplash.com/photo-1441974231531-c6227db76b6e?auto=format&fit=crop&w=1600&q=80") center/cover}
+  background:var(--teal-deep) url("../assets/showcase.jpg") center 42%/cover}
 .showcase::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(14,47,56,.22) 0%,rgba(14,47,56,.32) 45%,rgba(14,47,56,.82));z-index:0}
 .showcase__inner{position:relative;z-index:1;max-width:var(--wrap);margin:0 auto;width:100%;padding:clamp(2.4rem,6vw,4.6rem) var(--gutter)}
 .showcase .mono-tag{margin-bottom:1rem}
