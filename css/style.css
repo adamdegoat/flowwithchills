@@ -275,17 +275,26 @@ em{font-style:normal}
   .contour{display:none}
   .elev{right:auto;left:var(--gutter);bottom:8.5rem;width:min(58vw,280px)}
   .trailhead__cta .btn{flex:1;justify-content:center}
-  .basecamp{margin-left:12px;margin-right:12px}
+  /* tighten vertical rhythm so the page is not a marathon scroll */
+  .trailhead{min-height:auto;padding-top:6.5rem;padding-bottom:3.5rem}
+  .leg{padding-top:42px;padding-bottom:42px}
+  .leg--left{gap:1.7rem}
+  .leg__head{margin-bottom:1.5rem}
+  .leg h2{margin-bottom:.5em}
+  .legs{gap:1.4rem}
+  .signs{gap:.7rem;margin-top:1.6rem}
+  .quad article{padding:1.35rem}
+  .routecards{gap:1rem}
+  .routecard{padding:1.5rem 1.4rem}
+  .routes__note{margin-top:1.8rem}
+  .outs{gap:1.2rem}
+  .terrain__grid{gap:1rem}
+  .terr{min-height:320px}
+  .log{padding-top:50px;padding-bottom:50px}
+  .basecamp{margin-left:12px;margin-right:12px;padding-top:60px;padding-bottom:64px}
 }
 
-/* sticky mobile action bar */
 .mobcta{display:none}
-@media(max-width:1000px){
-  .mobcta{display:flex;position:fixed;left:12px;right:12px;bottom:12px;z-index:95;justify-content:center;align-items:center;
-    background:var(--apricot);color:var(--ink);font-family:var(--body);font-weight:600;font-size:1.02rem;
-    padding:.95em 1em;border:2px solid var(--ink);border-radius:4px;box-shadow:4px 4px 0 var(--ink)}
-  body{padding-bottom:82px}
-}
 
 /* mobile menu */
 .nav__panel{position:fixed;inset:0;z-index:99;background:var(--ink);display:flex;flex-direction:column;justify-content:center;gap:1.1rem;padding:var(--gutter);
