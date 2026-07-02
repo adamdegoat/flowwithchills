@@ -364,7 +364,7 @@ a.terr:hover{transform:translate(-3px,-3px);box-shadow:9px 9px 0 var(--teal-deep
 @media(max-width:820px){
   .pdetail{grid-template-columns:1fr;gap:1.6rem}
   .aboutgrid{grid-template-columns:1fr;gap:1.8rem}
-  .aboutgrid .photo{position:static;aspect-ratio:16/10;max-width:480px}
+  .aboutgrid .photo{position:relative;top:auto;aspect-ratio:16/10;max-width:480px}
   .place{grid-template-columns:1fr;gap:.4rem}
   .place__k{padding-top:0}
   .subhero{padding-top:6rem}
