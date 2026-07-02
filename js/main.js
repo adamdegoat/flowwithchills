@@ -109,14 +109,18 @@
   var panel = document.createElement('div');
   panel.className = 'nav__panel';
   panel.innerHTML =
-    '<a href="#guide">The guide</a>' +
+    '<a href="#guide">About Iylia</a>' +
     '<a href="#route">The day</a>' +
-    '<a href="#routes">Routes</a>' +
-    '<a href="#terrain">Terrain</a>' +
+    '<a href="#routes">Programs</a>' +
+    '<a href="#terrain">Where we go</a>' +
     '<a href="#basecamp">Plan a retreat</a>';
   document.body.appendChild(panel);
-  if (toggle) toggle.addEventListener('click', function () { panel.classList.toggle('open'); });
-  panel.addEventListener('click', function (e) { if (e.target.tagName === 'A') panel.classList.remove('open'); });
+  function closeMenu() { panel.classList.remove('open'); if (toggle) toggle.classList.remove('is-open'); }
+  if (toggle) toggle.addEventListener('click', function () {
+    var open = panel.classList.toggle('open');
+    toggle.classList.toggle('is-open', open);
+  });
+  panel.addEventListener('click', function (e) { if (e.target.tagName === 'A') closeMenu(); });
 
   // ---- lifecycle ----
   window.addEventListener('scroll', onScroll, { passive: true });

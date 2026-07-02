@@ -51,13 +51,9 @@ em{font-style:normal}
 .trail__hiker{fill:var(--apricot);stroke:var(--paper);stroke-width:3;opacity:0;transition:opacity .3s}
 
 /* ------------------------------------------------------------- WAYPOINT PIN */
-.pin{position:absolute;top:0;z-index:4;width:54px;height:54px;border-radius:50%;
-  background:var(--paper);border:2.5px solid var(--ink);
-  display:flex;align-items:center;justify-content:center;
-  font-family:var(--mono);font-size:1rem;font-weight:500;color:var(--ink);
-  box-shadow:0 0 0 7px var(--paper),4px 5px 0 -1px rgba(18,58,67,.18);}
-.pin span{font-size:.62rem;text-transform:uppercase;letter-spacing:.06em}
-.pin--start,.pin--end{background:var(--apricot);border-color:var(--ink);color:var(--ink)}
+.pin{position:absolute;top:0;z-index:4;width:15px;height:15px;border-radius:50%;
+  background:var(--apricot);box-shadow:0 0 0 4px var(--paper),0 0 0 5.5px rgba(18,58,67,.2);}
+.pin--start,.pin--end{width:19px;height:19px;box-shadow:0 0 0 5px var(--paper),0 0 0 7px var(--ink)}
 .leg--left .pin,.leg--right .pin{top:clamp(56px,8vw,104px)}
 .leg--right .pin{left:min(64%,calc(50% + 180px))}
 .leg--left .pin{left:max(30%,calc(50% - 234px))}
@@ -74,8 +70,10 @@ em{font-style:normal}
 .nav__links a::after{content:"";position:absolute;left:0;bottom:-4px;width:0;height:2px;background:var(--apricot);transition:width .3s var(--ease)}
 .nav__links a:hover{color:var(--ink)}
 .nav__links a:hover::after{width:100%}
-.nav__toggle{display:none;flex-direction:column;gap:5px;background:none;border:none;cursor:pointer;padding:6px;color:var(--ink)}
-.nav__toggle span{width:24px;height:2.5px;background:currentColor;border-radius:2px}
+.nav__toggle{display:none;flex-direction:column;justify-content:center;align-items:center;gap:6px;background:none;border:none;cursor:pointer;width:44px;height:44px;margin:-6px -10px -6px 0;color:var(--ink)}
+.nav__toggle span{width:25px;height:2.5px;background:currentColor;border-radius:2px;transition:transform .3s var(--ease),opacity .2s}
+.nav__toggle.is-open span:first-child{transform:translateY(4.25px) rotate(45deg)}
+.nav__toggle.is-open span:last-child{transform:translateY(-4.25px) rotate(-45deg)}
 
 /* ------------------------------------------------------------- BUTTONS */
 .btn{display:inline-flex;align-items:center;gap:.5em;font-family:var(--body);font-weight:600;font-size:.98rem;
@@ -253,17 +251,16 @@ em{font-style:normal}
   .routecards{grid-template-columns:1fr;max-width:440px}
   .terrain__grid{grid-template-columns:1fr}
   .footer__top{grid-template-columns:1fr;gap:2.4rem}
-  /* trail becomes a left rail on smaller screens */
-  .pin{width:46px;height:46px;font-size:.9rem;box-shadow:0 0 0 6px var(--paper),3px 4px 0 -1px rgba(18,58,67,.18)}
-  .leg{padding-left:64px}
-  .leg--left .pin,.leg--right .pin,.leg--full .pin{left:6px;transform:none;top:clamp(40px,7vw,70px)}
+  /* trail becomes a thin left thread on smaller screens */
+  .leg{padding-left:30px}
+  .leg--left .pin,.leg--right .pin,.leg--full .pin{left:9px;transform:none;top:clamp(38px,7vw,66px)}
   .leg--right .leg__content,.leg--left .leg__content,
   .leg__content--narrow,.leg__content--wide{margin-left:0;margin-right:0;max-width:none}
-  .leg--left{padding-left:64px}
+  .leg--left{padding-left:30px}
   .leg__head{text-align:left;margin-left:0}
-  .pin--start{left:6px}
-  .log{padding-left:64px}
-  .log .pin{left:6px;transform:none}
+  .pin--start{left:9px}
+  .log{padding-left:30px}
+  .log .pin{left:9px;transform:none}
   .log figure{text-align:left}
   .basecamp .pin--end{left:50%;transform:translateX(-50%)}
 }
@@ -279,6 +276,15 @@ em{font-style:normal}
   .elev{right:auto;left:var(--gutter);bottom:8.5rem;width:min(58vw,280px)}
   .trailhead__cta .btn{flex:1;justify-content:center}
   .basecamp{margin-left:12px;margin-right:12px}
+}
+
+/* sticky mobile action bar */
+.mobcta{display:none}
+@media(max-width:1000px){
+  .mobcta{display:flex;position:fixed;left:12px;right:12px;bottom:12px;z-index:95;justify-content:center;align-items:center;
+    background:var(--apricot);color:var(--ink);font-family:var(--body);font-weight:600;font-size:1.02rem;
+    padding:.95em 1em;border:2px solid var(--ink);border-radius:4px;box-shadow:4px 4px 0 var(--ink)}
+  body{padding-bottom:82px}
 }
 
 /* mobile menu */
