@@ -1,0 +1,289 @@
+/* =======================================================================
+   Flow with Chills — "The Trail"
+   ==================================================================== */
+:root{
+  --paper:#F2ECDF;
+  --paper-2:#EAE1CF;
+  --ink:#123A43;
+  --ink-2:#3F565A;
+  --teal:#1C6E66;
+  --teal-deep:#124C48;
+  --mist:#9FBEB9;
+  --apricot:#E5904B;
+  --apricot-deep:#CF7A34;
+  --cream:#F7F2E8;
+  --line:rgba(18,58,67,.16);
+
+  --wrap:1180px;
+  --gutter:clamp(22px,5vw,72px);
+
+  --display:'Clash Display','Hanken Grotesk',system-ui,sans-serif;
+  --body:'General Sans',-apple-system,BlinkMacSystemFont,sans-serif;
+  --mono:'DM Mono',ui-monospace,monospace;
+  --ease:cubic-bezier(.22,.61,.36,1);
+}
+
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  font-family:var(--body);color:var(--ink);background:var(--paper);
+  line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden;position:relative;
+}
+a{color:inherit;text-decoration:none}
+h1,h2,h3{font-family:var(--display);font-weight:600;line-height:1.02;letter-spacing:-.02em}
+em{font-style:normal}
+
+.grain{position:fixed;inset:0;z-index:9999;pointer-events:none;opacity:.05;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='150' height='150'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");}
+
+/* mono labels */
+.mono-tag{font-family:var(--mono);font-size:.8rem;letter-spacing:.02em;color:var(--teal);text-transform:uppercase}
+.mono-tag em{color:var(--apricot-deep)}
+.mono-tag--light{color:var(--mist)}
+.mono-tag--light em{color:var(--apricot)}
+.legkick{font-family:var(--mono);font-size:.78rem;letter-spacing:.02em;color:var(--ink-2);text-transform:uppercase;margin-bottom:1.4em}
+.legkick em{color:var(--apricot-deep)}
+
+/* ------------------------------------------------------------- TRAIL SVG */
+.trail{position:absolute;top:0;left:0;width:100%;height:100%;z-index:1;pointer-events:none;overflow:visible}
+.trail__base{fill:none;stroke:rgba(18,58,67,.24);stroke-width:2.4;stroke-dasharray:0.5 11;stroke-linecap:round}
+.trail__draw{fill:none;stroke:var(--apricot);stroke-width:3.2;stroke-linecap:round}
+.trail__hiker{fill:var(--apricot);stroke:var(--paper);stroke-width:3;opacity:0;transition:opacity .3s}
+
+/* ------------------------------------------------------------- WAYPOINT PIN */
+.pin{position:absolute;top:0;z-index:4;width:54px;height:54px;border-radius:50%;
+  background:var(--paper);border:2.5px solid var(--ink);
+  display:flex;align-items:center;justify-content:center;
+  font-family:var(--mono);font-size:1rem;font-weight:500;color:var(--ink);
+  box-shadow:0 0 0 7px var(--paper),4px 5px 0 -1px rgba(18,58,67,.18);}
+.pin span{font-size:.62rem;text-transform:uppercase;letter-spacing:.06em}
+.pin--start,.pin--end{background:var(--apricot);border-color:var(--ink);color:var(--ink)}
+.leg--left .pin,.leg--right .pin{top:clamp(56px,8vw,104px)}
+.leg--right .pin{left:min(64%,calc(50% + 180px))}
+.leg--left .pin{left:max(30%,calc(50% - 234px))}
+.leg--full .pin{left:50%;transform:translateX(-50%);top:clamp(40px,6vw,72px)}
+
+/* ------------------------------------------------------------- NAV */
+.nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;gap:2rem;
+  padding:1.05rem var(--gutter);transition:background .4s var(--ease),box-shadow .4s var(--ease),padding .3s var(--ease);}
+.nav.scrolled{background:rgba(242,236,223,.85);backdrop-filter:blur(12px);box-shadow:0 1px 0 var(--line);padding-top:.7rem;padding-bottom:.7rem}
+.nav__brand{display:flex;align-items:center;gap:.55rem;color:var(--ink);margin-right:auto;font-family:var(--display);font-weight:600;font-size:1.12rem;letter-spacing:-.02em}
+.nav__mark{color:var(--ink);flex:none}
+.nav__links{display:flex;gap:1.9rem}
+.nav__links a{font-size:.92rem;font-weight:500;color:var(--ink-2);position:relative}
+.nav__links a::after{content:"";position:absolute;left:0;bottom:-4px;width:0;height:2px;background:var(--apricot);transition:width .3s var(--ease)}
+.nav__links a:hover{color:var(--ink)}
+.nav__links a:hover::after{width:100%}
+.nav__toggle{display:none;flex-direction:column;gap:5px;background:none;border:none;cursor:pointer;padding:6px;color:var(--ink)}
+.nav__toggle span{width:24px;height:2.5px;background:currentColor;border-radius:2px}
+
+/* ------------------------------------------------------------- BUTTONS */
+.btn{display:inline-flex;align-items:center;gap:.5em;font-family:var(--body);font-weight:600;font-size:.98rem;
+  padding:.85em 1.5em;border-radius:2px;cursor:pointer;border:2px solid transparent;
+  transition:transform .25s var(--ease),background .25s,color .25s,box-shadow .25s;}
+.btn--sm{padding:.55em 1.05em;font-size:.86rem}
+.btn--solid{background:var(--apricot);color:var(--ink);box-shadow:4px 4px 0 var(--ink)}
+.btn--solid:hover{transform:translate(-2px,-2px);box-shadow:6px 6px 0 var(--ink)}
+.btn--line{background:transparent;color:var(--ink);border-color:var(--ink)}
+.btn--line:hover{background:var(--ink);color:var(--cream)}
+.btn--line-light{background:transparent;color:var(--cream);border-color:rgba(247,242,232,.5)}
+.btn--line-light:hover{background:var(--cream);color:var(--ink);border-color:var(--cream)}
+
+/* ------------------------------------------------------------- TRAILHEAD */
+.trailhead{position:relative;z-index:2;min-height:100svh;display:flex;flex-direction:column;justify-content:center;
+  padding:8rem var(--gutter) 6rem;max-width:var(--wrap);margin:0 auto;overflow:visible}
+.trailhead__inner{max-width:860px}
+.trailhead .mono-tag{margin-bottom:1.8rem}
+.trailhead__title{font-family:var(--display);font-weight:600;font-size:clamp(3.2rem,10vw,7.4rem);line-height:.94;letter-spacing:-.035em}
+.hl{position:relative;color:var(--apricot-deep);white-space:nowrap}
+.hl::after{content:"";position:absolute;left:-.04em;right:-.04em;bottom:.08em;height:.42em;background:var(--apricot);opacity:.28;z-index:-1;transform:rotate(-1.2deg);border-radius:3px}
+.trailhead__lead{max-width:44ch;margin-top:1.8rem;font-size:clamp(1.08rem,1.6vw,1.28rem);color:var(--ink-2)}
+.trailhead__cta{display:flex;gap:1rem;margin-top:2.4rem;flex-wrap:wrap}
+.contour{position:absolute;color:var(--teal);opacity:.13;pointer-events:none}
+.contour--a{top:6%;right:-4%;width:min(46vw,540px);height:auto}
+.coord{position:absolute;top:24%;right:var(--gutter);font-family:var(--mono);font-size:.82rem;color:var(--ink);text-align:right;line-height:1.5;
+  border-right:2px solid var(--apricot);padding-right:.9rem}
+.coord__label{display:block;font-size:.66rem;text-transform:uppercase;letter-spacing:.14em;color:var(--teal);margin-bottom:.4em}
+.elev{position:absolute;bottom:12%;right:var(--gutter);width:min(30vw,320px);height:auto;color:var(--teal);opacity:.9}
+.pin--start{left:0;bottom:3.4rem;top:auto}
+.scrollcue{position:absolute;bottom:2rem;left:50%;transform:translateX(-50%);font-family:var(--mono);font-size:.7rem;
+  text-transform:uppercase;letter-spacing:.14em;color:var(--ink-2);display:flex;flex-direction:column;align-items:center;gap:.6rem}
+.scrollcue span{width:2px;height:34px;background:var(--apricot);animation:drop 2s var(--ease) infinite}
+@keyframes drop{0%{transform:scaleY(0);transform-origin:top}45%{transform:scaleY(1);transform-origin:top}55%{transform:scaleY(1);transform-origin:bottom}100%{transform:scaleY(0);transform-origin:bottom}}
+
+/* ------------------------------------------------------------- LEG (generic) */
+.leg{position:relative;z-index:2;max-width:var(--wrap);margin:0 auto;padding:clamp(64px,10vw,140px) var(--gutter)}
+.leg__content{max-width:600px}
+.leg__content--narrow{max-width:500px}
+.leg__content--wide{max-width:900px}
+.leg h2{font-size:clamp(1.9rem,4.4vw,3.4rem);margin-bottom:.6em}
+.lede{font-size:clamp(1.1rem,1.7vw,1.32rem);color:var(--ink);line-height:1.48}
+.leg p{color:var(--ink-2);font-size:1.05rem;margin-bottom:1em}
+.leg--right .leg__content{margin-left:auto;text-align:left}
+.leg--left{display:grid;grid-template-columns:.92fr 1.08fr;gap:clamp(2rem,5vw,4.5rem);align-items:center}
+.leg__head{max-width:760px;margin:0 auto clamp(2.4rem,5vw,4rem);text-align:center}
+.leg--full{max-width:1240px}
+
+/* signs (trail markers) */
+.signs{display:flex;flex-wrap:wrap;gap:1rem;margin-top:2rem}
+.sign{background:var(--cream);border:2px solid var(--ink);border-radius:4px;padding:.8em 1em;
+  font-family:var(--mono);font-size:.82rem;color:var(--ink);line-height:1.3;box-shadow:3px 3px 0 var(--ink);max-width:11rem}
+.sign b{display:block;font-family:var(--display);font-size:1.9rem;font-weight:600;color:var(--teal);margin-bottom:.15em}
+.sign--sm{padding:.35em .7em;font-size:.68rem;box-shadow:2px 2px 0 var(--ink);text-transform:uppercase;letter-spacing:.05em}
+.sign--hot{background:var(--apricot)}
+
+/* guide */
+.leg__media{position:relative}
+.photo{border:2.5px solid var(--ink);border-radius:6px;box-shadow:8px 8px 0 var(--teal-deep)}
+.photo--guide{aspect-ratio:4/5;
+  background:linear-gradient(180deg,rgba(18,58,67,.05),rgba(18,58,67,.35)),
+    url("https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=900&q=80") center/cover,var(--teal)}
+.tape{position:absolute;left:50%;bottom:-14px;transform:translateX(-50%) rotate(-2deg);
+  background:var(--apricot);color:var(--ink);font-family:var(--mono);font-size:.8rem;font-weight:500;
+  padding:.5em 1.1em;border:2px solid var(--ink);white-space:nowrap;box-shadow:3px 3px 0 var(--ink)}
+.tags{list-style:none;display:flex;flex-wrap:wrap;gap:.6rem;margin-top:1.8rem}
+.tags li{border:1.5px solid var(--line);background:var(--cream);padding:.45em .9em;border-radius:100px;font-size:.84rem;font-weight:500;color:var(--teal)}
+
+/* route legs (the day) */
+.legs{list-style:none;counter-reset:leg;display:grid;grid-template-columns:1fr 1fr;gap:2.4rem 3rem;margin-top:1rem}
+.legs li{position:relative;padding-left:1.6rem;border-left:2px solid var(--line)}
+.legs li::before{content:"";position:absolute;left:-7px;top:.4rem;width:12px;height:12px;border-radius:50%;background:var(--apricot);border:2px solid var(--ink)}
+.legs__km{font-family:var(--mono);font-size:.76rem;color:var(--teal);text-transform:uppercase;letter-spacing:.06em}
+.legs h3{font-size:1.5rem;margin:.35em 0 .4em}
+.legs p{font-size:.98rem;margin-bottom:0}
+
+/* why nature quad */
+.quad{display:grid;grid-template-columns:1fr 1fr;gap:0;border:2px solid var(--ink);border-radius:8px;overflow:hidden;margin-top:1rem}
+.quad article{padding:clamp(1.6rem,3vw,2.4rem);border-right:2px solid var(--ink);border-bottom:2px solid var(--ink)}
+.quad article:nth-child(2n){border-right:none}
+.quad article:nth-child(n+3){border-bottom:none}
+.quad__no{font-family:var(--mono);color:var(--apricot-deep);font-size:1rem}
+.quad h3{font-size:1.4rem;margin:.5em 0 .4em}
+.quad p{margin-bottom:0;font-size:.98rem}
+
+/* routes */
+.routecards{display:grid;grid-template-columns:repeat(3,1fr);gap:1.4rem;max-width:var(--wrap);margin:0 auto}
+.routecard{background:var(--cream);border:2.5px solid var(--ink);border-radius:8px;padding:1.9rem 1.7rem;display:flex;flex-direction:column;
+  transition:transform .3s var(--ease),box-shadow .3s var(--ease);box-shadow:5px 5px 0 rgba(18,58,67,.14)}
+.routecard:hover{transform:translate(-3px,-3px);box-shadow:9px 9px 0 var(--teal-deep)}
+.routecard__top{display:flex;justify-content:space-between;align-items:center;margin-bottom:1rem}
+.routecard__no{font-family:var(--mono);font-size:.9rem;color:var(--ink-2)}
+.routecard h3{font-size:2rem;margin-bottom:.1em}
+.routecard__meta{font-family:var(--mono);font-size:.8rem;color:var(--teal);text-transform:uppercase;letter-spacing:.03em;margin-bottom:1em}
+.routecard>p{color:var(--ink-2);font-size:.97rem;margin-bottom:1.4em;flex:1}
+.routecard ul{list-style:none;border-top:2px solid var(--line);padding-top:1.1rem;display:flex;flex-direction:column;gap:.5em}
+.routecard li{font-size:.9rem;color:var(--ink);padding-left:1.3em;position:relative}
+.routecard li::before{content:"";position:absolute;left:0;top:.6em;width:7px;height:7px;border-radius:50%;background:var(--apricot)}
+.routecard--feature{background:var(--ink);color:var(--cream);box-shadow:5px 5px 0 var(--apricot-deep)}
+.routecard--feature:hover{box-shadow:9px 9px 0 var(--apricot)}
+.routecard--feature h3{color:var(--cream)}
+.routecard--feature>p{color:rgba(247,242,232,.75)}
+.routecard--feature .routecard__meta{color:var(--mist)}
+.routecard--feature .routecard__no{color:var(--mist)}
+.routecard--feature li{color:var(--cream)}
+.routecard--feature ul{border-color:rgba(247,242,232,.2)}
+.routes__note{text-align:center;max-width:60ch;margin:2.6rem auto 0;font-family:var(--mono);font-size:.9rem;color:var(--ink-2)}
+
+/* outcomes */
+.outs{display:grid;grid-template-columns:1fr 1fr;gap:1.6rem 2.4rem;margin-top:1rem}
+.outs>div{display:flex;gap:1.1rem;align-items:flex-start;padding-top:1.2rem;border-top:2px solid var(--ink)}
+.outs span{font-family:var(--mono);color:var(--apricot-deep);font-size:1rem;flex:none;padding-top:.15em}
+.outs p{margin-bottom:0;color:var(--ink);font-size:1.04rem}
+
+/* terrain */
+.terrain__grid{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;max-width:var(--wrap);margin:0 auto}
+.terr{position:relative;min-height:430px;border:2.5px solid var(--ink);border-radius:8px;overflow:hidden;display:flex;align-items:flex-end;color:var(--cream);box-shadow:6px 6px 0 rgba(18,58,67,.16)}
+.terr::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(18,58,67,.1) 30%,rgba(11,38,42,.85))}
+.terr__body{position:relative;z-index:1;padding:2rem}
+.terr--sg{background:var(--teal) url("https://images.unsplash.com/photo-1518495973542-4542c06a5843?auto=format&fit=crop&w=1000&q=80") center/cover}
+.terr--jh{background:var(--teal) url("https://images.unsplash.com/photo-1434725039720-aaad6dd32dfe?auto=format&fit=crop&w=1000&q=80") center/cover}
+.terr__tag{font-family:var(--mono);font-size:.74rem;text-transform:uppercase;letter-spacing:.12em;color:var(--apricot)}
+.terr h3{font-size:2rem;color:var(--cream);margin:.2em 0 .4em}
+.terr p{color:rgba(247,242,232,.86);font-size:1rem;max-width:38ch}
+
+/* trail log */
+.log{position:relative;z-index:2;max-width:920px;margin:0 auto;padding:clamp(70px,10vw,150px) var(--gutter);text-align:center}
+.log .pin{left:50%;transform:translateX(-50%);top:clamp(30px,5vw,60px)}
+.log .legkick{margin-bottom:2rem}
+.log blockquote{font-family:var(--display);font-weight:500;font-size:clamp(1.7rem,3.6vw,2.9rem);line-height:1.22;color:var(--ink);letter-spacing:-.02em}
+.log blockquote::before{content:"“";color:var(--apricot);margin-right:.05em}
+.log figcaption{margin-top:1.8rem;display:flex;flex-direction:column;gap:.2em}
+.log figcaption b{font-family:var(--mono);font-weight:500;color:var(--teal);font-size:.9rem}
+.log figcaption span{font-size:.85rem;color:var(--ink-2)}
+
+/* basecamp */
+.basecamp{position:relative;z-index:2;background:var(--ink);color:var(--cream);text-align:center;
+  padding:clamp(80px,12vw,170px) var(--gutter);margin:0 var(--gutter) var(--gutter);border-radius:14px;overflow:hidden}
+.basecamp .pin--end{left:50%;transform:translateX(-50%);top:-27px}
+.basecamp__inner{max-width:680px;margin:0 auto;position:relative;z-index:1}
+.basecamp .mono-tag{margin-bottom:1.6rem}
+.basecamp h2{font-size:clamp(2.2rem,5.5vw,4rem);color:var(--cream);margin-bottom:.5em}
+.basecamp p{color:rgba(247,242,232,.8);max-width:46ch;margin:0 auto;font-size:1.08rem}
+.basecamp__cta{display:flex;gap:1rem;justify-content:center;margin-top:2.2rem;flex-wrap:wrap}
+.basecamp__mail{margin-top:2rem;font-family:var(--mono);font-size:.95rem;color:var(--mist)}
+
+/* footer */
+.footer{position:relative;z-index:2;background:var(--teal-deep);color:var(--mist);padding:clamp(3rem,6vw,5rem) var(--gutter) 2rem}
+.footer__top{max-width:var(--wrap);margin:0 auto;display:grid;grid-template-columns:1.4fr 2fr;gap:3rem;padding-bottom:2.6rem;border-bottom:1px solid rgba(159,190,185,.25)}
+.footer__brand{display:flex;flex-direction:column;gap:.6rem}
+.footer__brand>span{font-family:var(--display);font-weight:600;font-size:1.3rem;color:var(--cream)}
+.footer__brand p{color:rgba(159,190,185,.8);font-size:.94rem;max-width:32ch}
+.footer__nav{display:grid;grid-template-columns:repeat(3,1fr);gap:2rem}
+.footer__h{display:block;font-family:var(--mono);font-size:.72rem;text-transform:uppercase;letter-spacing:.1em;color:var(--apricot);margin-bottom:1.1em}
+.footer__nav a{display:block;color:rgba(247,242,232,.82);font-size:.94rem;margin-bottom:.7em}
+.footer__nav a:hover{color:var(--apricot)}
+.footer__base{max-width:var(--wrap);margin:1.6rem auto 0;display:flex;justify-content:space-between;flex-wrap:wrap;gap:1rem;font-family:var(--mono);font-size:.78rem;color:rgba(159,190,185,.6)}
+
+/* reveal */
+.reveal{opacity:0;transform:translateY(24px);transition:opacity .7s var(--ease),transform .7s var(--ease)}
+.reveal.in{opacity:1;transform:none}
+@media (prefers-reduced-motion:reduce){
+  .reveal{opacity:1;transform:none;transition:none}
+  .scrollcue span{animation:none}
+  html{scroll-behavior:auto}
+}
+
+/* ------------------------------------------------------------- RESPONSIVE */
+@media(max-width:1000px){
+  .nav__links{display:none}
+  .nav .btn--sm{display:none}
+  .nav__toggle{display:flex}
+  .leg--left{grid-template-columns:1fr;gap:2.6rem}
+  .leg__media{max-width:420px}
+  .routecards{grid-template-columns:1fr;max-width:440px}
+  .terrain__grid{grid-template-columns:1fr}
+  .footer__top{grid-template-columns:1fr;gap:2.4rem}
+  /* trail becomes a left rail on smaller screens */
+  .pin{width:46px;height:46px;font-size:.9rem;box-shadow:0 0 0 6px var(--paper),3px 4px 0 -1px rgba(18,58,67,.18)}
+  .leg{padding-left:64px}
+  .leg--left .pin,.leg--right .pin,.leg--full .pin{left:6px;transform:none;top:clamp(40px,7vw,70px)}
+  .leg--right .leg__content,.leg--left .leg__content,
+  .leg__content--narrow,.leg__content--wide{margin-left:0;margin-right:0;max-width:none}
+  .leg--left{padding-left:64px}
+  .leg__head{text-align:left;margin-left:0}
+  .pin--start{left:6px}
+  .log{padding-left:64px}
+  .log .pin{left:6px;transform:none}
+  .log figure{text-align:left}
+  .basecamp .pin--end{left:50%;transform:translateX(-50%)}
+}
+@media(max-width:640px){
+  .legs{grid-template-columns:1fr;gap:1.8rem}
+  .quad{grid-template-columns:1fr}
+  .quad article{border-right:none}
+  .quad article:nth-child(3){border-bottom:2px solid var(--ink)}
+  .outs{grid-template-columns:1fr}
+  .footer__nav{grid-template-columns:1fr 1fr}
+  .coord{display:none}
+  .contour{display:none}
+  .elev{right:auto;left:var(--gutter);bottom:8.5rem;width:min(58vw,280px)}
+  .trailhead__cta .btn{flex:1;justify-content:center}
+  .basecamp{margin-left:12px;margin-right:12px}
+}
+
+/* mobile menu */
+.nav__panel{position:fixed;inset:0;z-index:99;background:var(--ink);display:flex;flex-direction:column;justify-content:center;gap:1.1rem;padding:var(--gutter);
+  opacity:0;pointer-events:none;transition:opacity .3s var(--ease)}
+.nav__panel.open{opacity:1;pointer-events:auto}
+.nav__panel a{font-family:var(--display);font-weight:600;font-size:2rem;color:var(--cream)}
+.nav__panel a:last-child{margin-top:1rem;font-family:var(--mono);font-size:1rem;color:var(--apricot)}

@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Flow with Chills — Corporate wellness retreats in nature</title>
+<meta name="description" content="Guided wellness retreats in the wild edges of Singapore and Johor. A real day off the grid for your team, led by Iylia.">
+<link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+<meta property="og:title" content="Flow with Chills">
+<meta property="og:description" content="Take your team where the wifi ends. Corporate wellness retreats in nature. Singapore and Johor.">
+<meta property="og:image" content="assets/og.svg">
+<meta property="og:type" content="website">
+<link rel="preconnect" href="https://api.fontshare.com" crossorigin>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://api.fontshare.com/v2/css?f[]=clash-display@400,500,600,700&f[]=general-sans@400,500,600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<div class="grain" aria-hidden="true"></div>
+
+<!-- the continuous trail, drawn by js from real waypoint positions -->
+<svg class="trail" aria-hidden="true" preserveAspectRatio="none">
+  <path class="trail__base"></path>
+  <path class="trail__draw"></path>
+  <circle class="trail__hiker" r="6" cx="-50" cy="-50"></circle>
+</svg>
+
+<!-- NAV -->
+<header class="nav" id="nav">
+  <a class="nav__brand" href="#top">
+    <svg class="nav__mark" width="30" height="30" viewBox="0 0 120 120" fill="none" aria-hidden="true">
+      <g stroke="currentColor" stroke-width="6" stroke-linecap="round" fill="none">
+        <path d="M18 74 C 38 60, 52 60, 68 70 C 82 79, 94 79, 104 70"/>
+        <path d="M18 88 C 38 74, 52 74, 68 84 C 82 93, 94 93, 104 84" opacity="0.5"/>
+      </g>
+      <path d="M18 60 C 38 46, 52 46, 68 56 C 82 65, 94 65, 104 56" stroke="var(--teal)" stroke-width="6" stroke-linecap="round" fill="none"/>
+      <circle cx="60" cy="34" r="9" fill="var(--apricot)"/>
+    </svg>
+    <span>Flow with Chills</span>
+  </a>
+  <nav class="nav__links" aria-label="Primary">
+    <a href="#guide">The guide</a>
+    <a href="#route">The day</a>
+    <a href="#routes">Routes</a>
+    <a href="#terrain">Terrain</a>
+  </nav>
+  <a href="#basecamp" class="btn btn--solid btn--sm">Plan a retreat</a>
+  <button class="nav__toggle" id="navToggle" aria-label="Menu"><span></span><span></span></button>
+</header>
+
+<main id="top">
+
+<!-- TRAILHEAD / HERO -->
+<header class="trailhead" id="trailhead">
+  <svg class="contour contour--a" viewBox="0 0 400 400" aria-hidden="true">
+    <g fill="none" stroke="currentColor" stroke-width="1.4">
+      <path d="M200 60 C 300 70, 340 160, 300 240 C 260 320, 140 340, 90 270 C 45 205, 90 100, 200 60Z"/>
+      <path d="M200 90 C 280 100, 310 165, 278 232 C 246 296, 152 312, 112 256 C 74 202, 112 122, 200 90Z"/>
+      <path d="M200 122 C 262 130, 284 172, 258 224 C 234 272, 166 284, 136 242 C 106 200, 138 148, 200 122Z"/>
+      <path d="M200 156 C 244 162, 258 190, 240 224 C 222 256, 180 264, 160 236 C 140 208, 162 172, 200 156Z"/>
+    </g>
+  </svg>
+  <div class="trailhead__inner">
+    <p class="mono-tag reveal">Flow with Chills <em>/</em> SG + Johor retreats</p>
+    <h1 class="trailhead__title reveal">Take your team<br>where the<br><span class="hl">wifi ends.</span></h1>
+    <p class="trailhead__lead reveal">Guided wellness retreats in the wild edges of Singapore and Johor. A proper day off the grid, led by Iylia, that your people carry back to their desks and keep.</p>
+    <div class="trailhead__cta reveal">
+      <a class="btn btn--solid" href="#basecamp">Plan a retreat</a>
+      <a class="btn btn--line" href="#routes">See the routes</a>
+    </div>
+  </div>
+  <div class="coord reveal">
+    <span class="coord__label">Trailhead</span>
+    01&deg;21&prime;N<br>103&deg;49&prime;E
+  </div>
+  <svg class="elev reveal" viewBox="0 0 320 90" aria-hidden="true">
+    <polyline points="0,78 40,60 80,66 120,34 160,44 200,18 240,40 280,26 320,52" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+    <circle cx="200" cy="18" r="4" fill="var(--apricot)"/>
+  </svg>
+  <span class="pin pin--start" data-node><span>Start</span></span>
+  <div class="scrollcue" aria-hidden="true"><span></span>Follow the trail</div>
+</header>
+
+<!-- LEG 01 — THE PROBLEM -->
+<section class="leg leg--right" id="why">
+  <span class="pin" data-node>01</span>
+  <div class="leg__content">
+    <p class="legkick reveal">Waypoint 01 <em>/</em> Why teams end up here</p>
+    <h2 class="reveal">Your people are tired in a way a long weekend can't fix.</h2>
+    <p class="lede reveal">Burnout is not a bad mood, it is a running cost. It shows up as sick days, quiet quitting, good people handing in notice and a team that used to have spark going flat. Most corporate wellness stops at fruit and a webinar. It never touches the thing that is actually worn down.</p>
+    <div class="signs reveal">
+      <div class="sign"><b>1 in 3</b>staff feel burnt out most weeks</div>
+      <div class="sign"><b>61%</b>think clearer after time outdoors</div>
+      <div class="sign"><b>4x</b>the cost to replace them vs help them</div>
+    </div>
+  </div>
+</section>
+
+<!-- LEG 02 — THE GUIDE -->
+<section class="leg leg--left" id="guide">
+  <span class="pin" data-node>02</span>
+  <div class="leg__media reveal">
+    <div class="photo photo--guide" role="img" aria-label="Iylia outdoors"></div>
+    <span class="tape">Iylia, your guide</span>
+  </div>
+  <div class="leg__content leg__content--narrow">
+    <p class="legkick reveal">Waypoint 02 <em>/</em> Who walks you in</p>
+    <h2 class="reveal">He used to build bodies. Now he rebuilds heads.</h2>
+    <p class="reveal">Iylia ran a gym for years. He watched people chase a stronger body while their sleep, their focus and their calm quietly fell apart. Strong on the outside, running on empty underneath. He figured out the work he cared about was never really about muscle.</p>
+    <p class="reveal">So he swapped the gym floor for forest trails, waterfalls and quiet coast. Someone who understands training, recovery and how the body holds stress, walking your team back to steady, one route at a time.</p>
+    <ul class="tags reveal">
+      <li>Ex gym owner and coach</li>
+      <li>Breathwork and movement</li>
+      <li>Guides SG and Johor</li>
+    </ul>
+  </div>
+</section>
+
+<!-- LEG 03 — THE DAY / ROUTE -->
+<section class="leg leg--right route" id="route">
+  <span class="pin" data-node>03</span>
+  <div class="leg__content leg__content--wide">
+    <p class="legkick reveal">Waypoint 03 <em>/</em> How a day runs</p>
+    <h2 class="reveal">One route, four legs, zero notifications.</h2>
+    <ol class="legs">
+      <li class="reveal"><span class="legs__km">0.0 km</span><h3>Arrive and unplug</h3><p>Phones go in the bag. We open with slow movement and breathwork to shake off the week and land everyone in the same place.</p></li>
+      <li class="reveal"><span class="legs__km">2.4 km</span><h3>Move through it</h3><p>A guided trail, a waterfall, a stretch of coast. Paced for every fitness level, built to get people moving together, not competing.</p></li>
+      <li class="reveal"><span class="legs__km">4.1 km</span><h3>Rest and reset</h3><p>Stillness, a shared meal, and simple prompts that pull the team back to being people, not just colleagues.</p></li>
+      <li class="reveal"><span class="legs__km">Home</span><h3>Carry it back</h3><p>Everyone leaves with a small, honest set of habits to protect their energy long after the retreat ends.</p></li>
+    </ol>
+  </div>
+</section>
+
+<!-- LEG 04 — WHY NATURE -->
+<section class="leg leg--left" id="nature">
+  <span class="pin" data-node>04</span>
+  <div class="leg__content leg__content--wide">
+    <p class="legkick reveal">Waypoint 04 <em>/</em> What the outdoors does</p>
+    <h2 class="reveal">The calm isn't a nice-to-have. It's the whole point.</h2>
+    <div class="quad">
+      <article class="reveal"><span class="quad__no">a</span><h3>The nervous system stands down</h3><p>Green space lowers the stress response. Slower pulse, clearer head, a body that stops bracing.</p></article>
+      <article class="reveal"><span class="quad__no">b</span><h3>Attention refills</h3><p>Away from the ping of notifications, focus and ideas come back. People return sharper, not just softer.</p></article>
+      <article class="reveal"><span class="quad__no">c</span><h3>People drop the armour</h3><p>Something honest happens on a trail that never happens in a meeting room. Trust goes up on its own.</p></article>
+      <article class="reveal"><span class="quad__no">d</span><h3>It actually sticks</h3><p>A retreat is a reset, not a plaster. People leave with habits they can keep on a normal Tuesday.</p></article>
+    </div>
+  </div>
+</section>
+
+<!-- LEG 05 — PROGRAMS / ROUTES -->
+<section class="leg leg--full routes" id="routes">
+  <span class="pin" data-node>05</span>
+  <div class="leg__head">
+    <p class="legkick reveal">Waypoint 05 <em>/</em> Pick your route</p>
+    <h2 class="reveal">Three ways in. Every one shaped around your team.</h2>
+  </div>
+  <div class="routecards">
+    <article class="routecard reveal">
+      <div class="routecard__top"><span class="routecard__no">R1</span><span class="sign sign--sm">Easy</span></div>
+      <h3>The Reset</h3>
+      <p class="routecard__meta">Half day <em>/</em> Singapore</p>
+      <p>A focused morning of movement, breathwork and a nature walk. The simplest way to give a stretched team a real pause.</p>
+      <ul><li>3 to 4 hours</li><li>Up to 20 people</li><li>Within Singapore</li></ul>
+    </article>
+    <article class="routecard routecard--feature reveal">
+      <div class="routecard__top"><span class="routecard__no">R2</span><span class="sign sign--sm sign--hot">Most booked</span></div>
+      <h3>The Day Out</h3>
+      <p class="routecard__meta">Full day <em>/</em> Singapore or Johor</p>
+      <p>A complete day in nature. Movement, a guided trail or waterfall, a shared meal and real reflection. The signature Flow with Chills route.</p>
+      <ul><li>Full day</li><li>Up to 30 people</li><li>Singapore or Johor</li></ul>
+    </article>
+    <article class="routecard reveal">
+      <div class="routecard__top"><span class="routecard__no">R3</span><span class="sign sign--sm">Deep</span></div>
+      <h3>The Immersion</h3>
+      <p class="routecard__meta">Multi day <em>/</em> Johor</p>
+      <p>An overnight in the Johor wild. Deeper rest, real distance from work, and the strongest team bonds we build.</p>
+      <ul><li>2 to 3 days</li><li>Tailored group</li><li>Johor retreat sites</li></ul>
+    </article>
+  </div>
+  <p class="routes__note reveal">Pricing is built around your group and goals. Ask for a proposal and we come back with options in two working days.</p>
+</section>
+
+<!-- LEG 06 — OUTCOMES -->
+<section class="leg leg--right" id="outcomes">
+  <span class="pin" data-node>06</span>
+  <div class="leg__content leg__content--wide">
+    <p class="legkick reveal">Waypoint 06 <em>/</em> What comes back to the office</p>
+    <h2 class="reveal">What leadership actually gets back.</h2>
+    <div class="outs">
+      <div class="reveal"><span>01</span><p>A team that feels genuinely looked after, not lectured at about wellbeing.</p></div>
+      <div class="reveal"><span>02</span><p>Real recovery that shows up as energy, focus and fewer people quietly checking out.</p></div>
+      <div class="reveal"><span>03</span><p>Stronger trust between people that makes the everyday work smoother.</p></div>
+      <div class="reveal"><span>04</span><p>A wellbeing story worth telling your people and your next hires.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- LEG 07 — TERRAIN -->
+<section class="leg leg--full terrain" id="terrain">
+  <span class="pin" data-node>07</span>
+  <div class="leg__head">
+    <p class="legkick reveal">Waypoint 07 <em>/</em> The terrain</p>
+    <h2 class="reveal">Wild places, closer than you think.</h2>
+  </div>
+  <div class="terrain__grid">
+    <article class="terr terr--sg reveal">
+      <div class="terr__body"><span class="terr__tag">Singapore</span><h3>Rainforest and reservoir</h3><p>Hidden trails, quiet reservoirs and pockets of old jungle, all within reach of the city. A half day that still feels a world away.</p></div>
+    </article>
+    <article class="terr terr--jh reveal">
+      <div class="terr__body"><span class="terr__tag">Johor</span><h3>Waterfalls and highlands</h3><p>Cooler air, wilder country and real distance from the desk. Waterfalls, forest and room to properly switch off.</p></div>
+    </article>
+  </div>
+</section>
+
+<!-- TRAIL LOG / TESTIMONIAL -->
+<section class="log">
+  <span class="pin" data-node>08</span>
+  <figure class="reveal">
+    <p class="legkick">From the trail log</p>
+    <blockquote>My team came back lighter. You could feel it in the room the next week. It did more for us than any workshop we have ever paid for.</blockquote>
+    <figcaption><b>Placeholder quote</b><span>To be swapped for a real client</span></figcaption>
+  </figure>
+</section>
+
+<!-- BASECAMP / CONTACT -->
+<section class="basecamp" id="basecamp">
+  <span class="pin pin--end" data-node><span>End</span></span>
+  <div class="basecamp__inner reveal">
+    <p class="mono-tag mono-tag--light">Basecamp <em>/</em> Ready when you are</p>
+    <h2>Let's get your team<br>on the trail.</h2>
+    <p>Tell us a little about your team and what you are hoping for. We come back with a proposal built around you. No pressure, no jargon.</p>
+    <div class="basecamp__cta">
+      <a class="btn btn--solid" href="mailto:hello@flowwithchills.com?subject=Retreat%20proposal%20enquiry">Request a proposal</a>
+      <a class="btn btn--line-light" href="https://wa.me/6500000000">Message on WhatsApp</a>
+    </div>
+    <p class="basecamp__mail">hello@flowwithchills.com</p>
+  </div>
+</section>
+
+</main>
+
+<footer class="footer">
+  <div class="footer__top">
+    <div class="footer__brand">
+      <svg width="30" height="30" viewBox="0 0 120 120" fill="none" aria-hidden="true">
+        <g stroke="#9FBEB9" stroke-width="6" stroke-linecap="round" fill="none">
+          <path d="M18 74 C 38 60, 52 60, 68 70 C 82 79, 94 79, 104 70"/>
+          <path d="M18 88 C 38 74, 52 74, 68 84 C 82 93, 94 93, 104 84" opacity="0.5"/>
+        </g>
+        <path d="M18 60 C 38 46, 52 46, 68 56 C 82 65, 94 65, 104 56" stroke="#57938c" stroke-width="6" stroke-linecap="round" fill="none"/>
+        <circle cx="60" cy="34" r="9" fill="#E5904B"/>
+      </svg>
+      <span>Flow with Chills</span>
+      <p>Corporate wellness retreats in the wild edges of Singapore and Johor. Led by Iylia.</p>
+    </div>
+    <nav class="footer__nav" aria-label="Footer">
+      <div><span class="footer__h">The trail</span><a href="#guide">The guide</a><a href="#route">The day</a><a href="#routes">Routes</a><a href="#terrain">Terrain</a></div>
+      <div><span class="footer__h">Routes</span><a href="#routes">The Reset</a><a href="#routes">The Day Out</a><a href="#routes">The Immersion</a></div>
+      <div><span class="footer__h">Get in touch</span><a href="mailto:hello@flowwithchills.com">hello@flowwithchills.com</a><a href="https://wa.me/6500000000">WhatsApp</a><a href="#basecamp">Request a proposal</a></div>
+    </nav>
+  </div>
+  <div class="footer__base">
+    <span>&copy; <span id="year"></span> Flow with Chills. All rights reserved.</span>
+    <span>Singapore + Johor</span>
+  </div>
+</footer>
+
+<script src="js/main.js"></script>
+</body>
+</html>

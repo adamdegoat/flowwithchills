@@ -1,0 +1,10 @@
+<svg width="120" height="120" viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Flow with Chills mark">
+  <!-- flowing contour lines: breath / water / hill -->
+  <g stroke="#123B47" stroke-width="4.5" stroke-linecap="round" fill="none">
+    <path d="M18 74 C 38 60, 52 60, 68 70 C 82 79, 94 79, 104 70"/>
+    <path d="M18 88 C 38 74, 52 74, 68 84 C 82 93, 94 93, 104 84" opacity="0.55"/>
+  </g>
+  <path d="M18 60 C 38 46, 52 46, 68 56 C 82 65, 94 65, 104 56" stroke="#2E6E6A" stroke-width="4.5" stroke-linecap="round" fill="none"/>
+  <!-- rising sun / breath point -->
+  <circle cx="60" cy="34" r="9" fill="#E8A87C"/>
+</svg>

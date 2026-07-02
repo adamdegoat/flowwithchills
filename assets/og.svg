@@ -1,0 +1,14 @@
+<svg width="1200" height="630" viewBox="0 0 1200 630" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1200" height="630" fill="#0E2F38"/>
+  <!-- layered misty hills -->
+  <path d="M0 470 C 240 410, 420 430, 640 470 C 860 510, 1000 500, 1200 460 L1200 630 L0 630 Z" fill="#123B47"/>
+  <path d="M0 520 C 260 470, 460 490, 700 520 C 920 548, 1040 540, 1200 512 L1200 630 L0 630 Z" fill="#1B4B48"/>
+  <path d="M0 566 C 300 528, 520 548, 760 566 C 960 582, 1080 576, 1200 560 L1200 630 L0 630 Z" fill="#2E6E6A"/>
+  <circle cx="980" cy="150" r="52" fill="#E8A87C"/>
+  <g stroke="#7FB3AD" stroke-width="2.4" fill="none" opacity="0.5">
+    <path d="M760 150 C 820 132, 880 132, 940 148"/>
+    <path d="M770 176 C 830 158, 890 158, 950 174"/>
+  </g>
+  <text x="90" y="250" font-family="Georgia, serif" font-size="86" fill="#F5F2EC" font-style="italic">Flow with Chills</text>
+  <text x="94" y="316" font-family="Helvetica, Arial, sans-serif" font-size="30" fill="#BCD3D0" letter-spacing="2">Corporate wellness retreats in nature. Singapore and Johor.</text>
+</svg>
