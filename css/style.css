@@ -134,8 +134,8 @@ em{font-style:normal}
 .leg__media{position:relative}
 .photo{border:2.5px solid var(--ink);border-radius:6px;box-shadow:8px 8px 0 var(--teal-deep)}
 .photo--guide{aspect-ratio:4/5;
-  background:linear-gradient(180deg,rgba(18,58,67,.05),rgba(18,58,67,.35)),
-    url("https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=900&q=80") center/cover,var(--teal)}
+  background:linear-gradient(180deg,rgba(18,58,67,0) 55%,rgba(18,58,67,.3)),
+    url("../assets/iylia.jpg") center 46%/cover,var(--teal)}
 .tape{position:absolute;left:50%;bottom:-14px;transform:translateX(-50%) rotate(-2deg);
   background:var(--apricot);color:var(--ink);font-family:var(--mono);font-size:.8rem;font-weight:500;
   padding:.5em 1.1em;border:2px solid var(--ink);white-space:nowrap;box-shadow:3px 3px 0 var(--ink)}
