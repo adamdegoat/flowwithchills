@@ -66,24 +66,26 @@
 
   function update() {
     if (!ready || !L) return;
-    var walk = window.scrollY + window.innerHeight * 0.58;
-    var prog = (walk - firstY) / (lastY - firstY);
-    prog = Math.max(0, Math.min(1, prog));
-    draw.style.strokeDashoffset = L * (1 - prog);
-    if (prog > 0.001) {
-      var pt = draw.getPointAtLength(L * prog);
-      hiker.setAttribute('cx', pt.x);
-      hiker.setAttribute('cy', pt.y);
-      hiker.style.opacity = prog < 0.999 ? '1' : '0';
-    } else {
-      hiker.style.opacity = '0';
+    // draw the trail up to where it crosses the "walk" line (58% down the viewport),
+    // matched by actual Y (not path-length) so the weaving desktop path still tracks scroll
+    var walkY = window.scrollY + window.innerHeight * 0.58;
+    if (walkY <= firstY) { draw.style.strokeDashoffset = L; hiker.style.opacity = '0'; return; }
+    if (walkY >= lastY) { draw.style.strokeDashoffset = 0; hiker.style.opacity = '0'; return; }
+    var lo = 0, hi = L, len = 0, pt = null;
+    for (var i = 0; i < 16; i++) {
+      len = (lo + hi) / 2;
+      pt = draw.getPointAtLength(len);
+      if (pt.y < walkY) lo = len; else hi = len;
     }
+    draw.style.strokeDashoffset = L - len;
+    if (pt) { hiker.setAttribute('cx', pt.x); hiker.setAttribute('cy', pt.y); hiker.style.opacity = '1'; }
   }
 
   // ---- nav state ----
+  var scrollTick = false;
   function onScroll() {
     nav.classList.toggle('scrolled', window.scrollY > 40);
-    update();
+    if (!scrollTick) { scrollTick = true; requestAnimationFrame(function () { update(); scrollTick = false; }); }
   }
 
   // ---- reveals ----

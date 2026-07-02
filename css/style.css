@@ -412,7 +412,7 @@ a.terr:hover{transform:translate(-3px,-3px);box-shadow:9px 9px 0 var(--teal-deep
   .footer__nav{grid-template-columns:1fr 1fr}
   .coord{display:none}
   .contour{display:none}
-  .elev{right:auto;left:var(--gutter);bottom:8.5rem;width:min(58vw,280px)}
+  .elev{display:none}
   .trailhead__cta .btn{flex:1;justify-content:center}
   /* tight vertical rhythm, no wasted space */
   .trailhead{min-height:auto;padding-top:5.5rem;padding-bottom:3rem}
